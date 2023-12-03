@@ -28,10 +28,10 @@ jobs:
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           ssh -T -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME}
+          exit
           echo $USER
-          java -jar IDP-0.0.1-SNAPSHOT.jar
-#          pwd
-#          ls
+          pwd
+          ls
 #          cd ../
 #          ls
 #          git checkout deploy-to-ec2
@@ -39,4 +39,4 @@ jobs:
 #          git reset --hard origin/deploy-to-ec2
 #          git pull origin deploy-to-ec2
 #          gradle bootjar -x test
-
+#          java -jar build/libs/IDP-0.0.1-SNAPSHOT.jar
