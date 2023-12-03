@@ -26,8 +26,8 @@ jobs:
           USER_NAME: ec2-user
           PRIVATE_KEY: ${{ secrets.SERVER_KEY }}
         run: |
-          echo "$PRIVATE_KEY" > private_key.pem && chmod 600 private_key.pem
-          ssh -T -i "private_key.pem" ${USER_NAME}@${HOST_NAME}
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -t -i private_key ${USER_NAME}@${HOST_NAME}
           echo $USER
           pwd
           ls
