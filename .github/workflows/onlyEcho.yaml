@@ -18,16 +18,19 @@ jobs:
         run: gradle bootjar -x test
       - name: Show path Jar
         run: pwd
+      - name: Copy Jar file to Server Ec2
+        run: scp /home/runner/work/IDP/IDP/build/libs/IDP-0.0.1-SNAPSHOT.jar ec2-user@13.250.106.124:/home/ec2-user
 
-#  Deploy:
-#    needs: Build
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#      - name: Deploy to server
-#        uses: appleboy/ssh-action@v0.1.3
-#        with:
-#          host: ec2-13-250-106-124.ap-southeast-1.compute.amazonaws.com
-#          username: ec2-user
-#          key: ${{ secrets.SERVER_KEY }}
-#          scrip:
+  Deploy:
+    needs: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to server
+        uses: appleboy/ssh-action@v0.1.3
+        with:
+          host: ec2-13-250-106-124.ap-southeast-1.compute.amazonaws.com
+          username: ec2-user
+          key: ${{ secrets.SERVER_KEY }}
+          scrip:
+            gradle bootjar -x test
