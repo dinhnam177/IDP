@@ -19,7 +19,7 @@ jobs:
       - name: Show path Jar
         run: pwd
       - name: Connect ssh to Ec2
-        run: ssh ec2-user@13.250.106.124
+        run: ssh -tt ec2-user@13.250.106.124
       - name: Copy Jar file to Server Ec2
         run: scp build/libs/*.jar ec2-user@13.250.106.124:/home/ec2-user
 
