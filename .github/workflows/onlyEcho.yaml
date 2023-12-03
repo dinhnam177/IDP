@@ -18,8 +18,10 @@ jobs:
         run: gradle bootjar -x test
       - name: Show path Jar
         run: pwd
+      - name: Connect ssh to Ec2
+        run: ssh ec2-user@13.250.106.124
       - name: Copy Jar file to Server Ec2
-        run: scp /home/runner/work/IDP/IDP/build/libs/IDP-0.0.1-SNAPSHOT.jar ec2-user@13.250.106.124:/home/ec2-user
+        run: scp build/libs/*.jar ec2-user@13.250.106.124:/home/ec2-user
 
   Deploy:
     needs: Build
