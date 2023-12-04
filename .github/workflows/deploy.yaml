@@ -27,11 +27,7 @@ jobs:
           PRIVATE_KEY: ${{ secrets.SERVER_KEY }}
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          ssh -T -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME}
-          echo $USER
-          pwd
-          ls
-          ls
+          ssh -T -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} "./deploy.sh"
 #          git checkout deploy-to-ec2
 #          git fetch --all
 #          git reset --hard origin/deploy-to-ec2
