@@ -17,7 +17,7 @@ jobs:
 #      - name: Build Project
 #        run: gradle bootjar -x test
   Deploy:
-    needs: Build
+#    needs: Build
     runs-on: self-hosted
     steps:
       - name: Deploy to server
